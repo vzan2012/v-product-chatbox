@@ -1,73 +1,227 @@
-# React + TypeScript + Vite
+# V - Product Chatbox
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sophisticated AI-powered chatbot interface designed for batch analysis of product images. Upload multiple product images and get instant AI-driven insights about quality, defects, and product characteristics.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Functionality
 
-## React Compiler
+- **📸 Batch Image Upload** - Upload up to 4 product images simultaneously
+- **🤖 AI-Powered Analysis** - Integrated with Google Gemini 2.0 Flash for intelligent image analysis
+- **💬 Natural Chat Interface** - Clean, ChatGPT-style conversation flow
+- **🎯 Product-Focused Insights** - Specialized in product quality, defects, and visual analysis
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### Technical Features
 
-## Expanding the ESLint configuration
+- **⚡ Real-time Processing** - Live loading states with immediate feedback
+- **📝 Markdown Responses** - Beautifully formatted AI responses
+- **🎨 Responsive Design** - Optimized for desktop and mobile devices
+- **🛡️ Error Handling** - Comprehensive error boundaries and user feedback
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technology Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Category             | Technologies                          |
+| -------------------- | ------------------------------------- |
+| **Frontend**         | React 19, TypeScript, Vite            |
+| **Styling**          | Tailwind CSS                          |
+| **AI Integration**   | LangChain.js, Google Gemini 2.0 Flash |
+| **State Management** | React Hooks                           |
+| **Build Tool**       | Vite                                  |
+| **Package Manager**  | Bun                                   |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Quick Start
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js 18+ or Bun
+- Google AI Studio API key
+
+### Installation
+
+1. **Clone & Setup**
+
+```bash
+git clone <repository-url>
+cd v-chatbot
+bun install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Environment Configuration**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cp .env.sample .env
 ```
+
+Add your API key:
+
+```env
+VITE_GOOGLE_API_KEY=your_google_ai_studio_api_key
+```
+
+3. **Launch Development Server**
+
+```bash
+bun run dev
+```
+
+## 🎯 How to Use
+
+### Basic Workflow
+
+1. **Upload Product Images**
+
+   - Click the 📎 attachment button
+   - Select up to 4 product images
+   - Supported formats: JPG, PNG, WebP, GIF
+
+2. **Ask Analysis Questions**
+
+   - "Are there any visible defects?"
+   - "Is this product new or used?"
+   - "How many items are in this image?"
+   - "Compare the quality across these images"
+
+3. **Review AI Insights**
+   - Individual analysis for each image
+   - Markdown-formatted responses
+   - Quality assessments and recommendations
+
+### Example Conversation
+
+```
+👤 User: [Uploads 3 product images]
+       "Check for any manufacturing defects"
+
+🤖 V-Chatbox:
+   ## Batch Analysis Results
+
+   ### 📸 product_front.jpg
+   **Assessment:** Good overall quality
+   **Findings:**
+   • No visible scratches or dents
+   • Color consistency is excellent
+   • Packaging appears intact
+
+   ### 📸 product_side.jpg
+   **Issues:**
+   • Minor scratch on lower left corner
+   • Slight color variation from front image
+```
+
+## 🏗️ Architecture
+
+```
+src/
+├── 🗣️  components/chat/          # Chat interface
+├── ⌨️  components/input/         # User input components
+├── 🎨 components/ui/            # Reusable UI elements
+├── ⚡ hooks/                    # State management
+├── 🔌 lib/api/                 # AI integration
+├── 📚 types/                   # Type definitions
+└── 🎯 App.tsx                  # Application root
+```
+
+### Key Components
+
+- **`ChatContainer`** - Main layout and orchestration
+- **`BatchResults`** - Display analysis results in card format
+- **`useChat`** - Manage conversation state and AI calls
+- **`useImageUpload`** - Handle image processing and validation
+- **`gemini.ts`** - Google Gemini API integration layer
+
+## 🔌 API Integration
+
+### Google Gemini 2.0 Flash
+
+```typescript
+// Multimodal analysis example
+const analysis = await analyzeBatchImages(images, query);
+
+// Text-only chat
+const response = await chatWithGemini(userMessage);
+```
+
+### Supported Analysis Types
+
+- ✅ Product defect detection
+- ✅ Quality assessment
+- ✅ Quantity counting
+- ✅ Condition evaluation
+- ✅ Comparative analysis
+- ✅ Custom user queries
+
+## 🎨 Customization
+
+### Adding New Analysis Templates
+
+```typescript
+// In src/lib/api/gemini.ts
+const createProductAnalysisPrompt = (query: string) => `
+You are a product quality specialist analyzing e-commerce images.
+
+Focus on:
+• Manufacturing defects
+• Packaging quality
+• Visual presentation
+• Consistency across product lines
+
+User Question: "${query}"
+`;
+```
+
+### Styling Modifications
+
+- Update Tailwind classes in component files
+- Modify color scheme in `tailwind.config.js`
+- Extend UI components in `src/components/ui/`
+
+## 📋 Available Scripts
+
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `bun run dev`     | Start development server |
+| `bun run build`   | Create production build  |
+| `bun run lint`    | Run code linting         |
+| `bun run preview` | Preview production build |
+
+## 🤝 Contributing
+
+We welcome contributions! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙋‍♂️ Author
+
+**Deepak Guptha Sitharaman**  
+_Full-Stack Developer_
+
+- GitHub: [@vzan2012](https://github.com/vzan2012)
+- Email: deepak.guptha.s@gmail.com / vzan2012@gmail.com
+- Portfolio: htttp://vzan2012.github.io
+
+## 🙏 Acknowledgments
+
+- **Google Gemini AI** for advanced multimodal capabilities
+- **LangChain.js** for seamless AI integration
+- **React Team** for the incredible framework
+- **Tailwind CSS** for the utility-first styling approach
+
+## 📞 Support
+
+- **Documentation**: Check this README and code comments
+- **Issues**: Open a GitHub issue for bugs or feature requests
+- **Questions**: Reach out via email or GitHub discussions
+
+---
+
+**V - Product Chatbox** - Transforming product analysis through AI-powered batch processing. 🚀
+
+_Built with modern web technologies for the next generation of e-commerce workflows._
