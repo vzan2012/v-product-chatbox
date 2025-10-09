@@ -16,7 +16,7 @@ export const BatchResults: React.FC<BatchResultsProps> = ({
       {/* Header */}
       <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
         <h3 className="font-medium text-gray-900">Batch Analysis Results</h3>
-        <p className="text-sm text-gray-600 mt-1">Query: "{query}"</p>
+        <p className="text-sm text-gray-600 mt-1">Your Query: "{query}"</p>
       </div>
 
       {/* Results */}

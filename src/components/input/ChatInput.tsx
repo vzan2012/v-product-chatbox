@@ -49,7 +49,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
       {images.length > 0 && (
         <div className="image-preview-container flex gap-2 mb-3 overflow-x-auto">
           {images.map((image) => (
-            <div key={image.id} className="relative group">
+            <div key={image.id} className="relative group flex-shrink-0">
               <img
                 src={image.previewUrl}
                 alt={image.file.name}
@@ -57,7 +57,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
               />
               <button
                 onClick={() => removeImageById(image.id)}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute -top-0 -right-2 bg-red-600 text-white rounded-full w-6 h-6 text-xs opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
               >
                 x
               </button>

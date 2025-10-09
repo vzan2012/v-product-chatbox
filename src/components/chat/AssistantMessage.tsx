@@ -17,7 +17,7 @@ export const AssistantMessage: React.FC<AssistantMessageProps> = ({
         <div className="max-w-[80%] bg-gray-100 rounded-2xl rounded-bl-md px-4 py-3">
           <div className="flex items-center space-x-2">
             <LoadingSpinner size="sm" />
-            <span className="text-gray-600">Analyzing images...</span>
+            <span className="text-gray-600">Analyzing text / images...</span>
           </div>
         </div>
       </div>
