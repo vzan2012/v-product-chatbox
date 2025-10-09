@@ -7,7 +7,7 @@ export const ChatContainer: React.FC = () => {
   const { messages, isProcessing, sendMessage, clearChat } = useChat();
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 justify-center border-2 border-gray-200 w-1/2 mx-auto">
+    <div className="flex flex-col h-screen bg-gray-50 justify-center border-2 border-gray-200 w-full max-w-4xl mx-auto">
       {/* Header */}
       <div className="flex-shrink-0 bg-white border-b border-gray-200 px-8 py-4">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
