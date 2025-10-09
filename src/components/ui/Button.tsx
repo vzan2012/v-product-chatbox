@@ -34,7 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
     lg: "px-6 py-3 text-lg",
   };
 
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} cursor-pointer`;
 
   return (
     <button

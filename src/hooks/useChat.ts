@@ -4,7 +4,7 @@ import type {
   ImageFileState,
   Message,
 } from "../types/app";
-import { analyzeBatchImages } from "../lib/api/gemini";
+import { analyzeBatchImages, chatWithGemini } from "../lib/api/gemini";
 import {
   createAIResponseMessage,
   createLoadingMessage,
@@ -20,7 +20,7 @@ export const useChat = () => {
     (message: Omit<Message, "id" | "timestamp">) => {
       const newMessage: Message = {
         ...message,
-        id: Date.now().toString(),
+        id: crypto.randomUUID(),
         timestamp: Date.now(),
       };
       setMessages((prev) => [...prev, newMessage]);
@@ -31,20 +31,21 @@ export const useChat = () => {
 
   const sendMessage = useCallback(
     async (text: string, images: ImageFileState[] = []) => {
+      if (!text.trim() && images.length === 0) return;
+      let loadingMessage: Message;
+      let analysisResult: BatchAnalysisResult;
+
       try {
-        let analysisResult: BatchAnalysisResult;
-
-        if (!text.trim() && images.length === 0) return;
-
         addMessage(createUserMessage(text, images));
 
-        const loadingMessage = addMessage(createLoadingMessage());
+        loadingMessage = addMessage(createLoadingMessage());
 
         setIsProcessing(true);
 
         if (images.length > 0) {
           analysisResult = await analyzeBatchImages(images, text.trim());
         } else {
+          const chatTextResponse = await chatWithGemini(text.trim());
           analysisResult = {
             query: text.trim(),
             results: [
@@ -52,7 +53,7 @@ export const useChat = () => {
                 imageId: "text-only",
                 imageName: "Text Query",
                 status: "DONE",
-                responseText: `This is a mock response for: "${text.trim()}". Enable LangChain for real AI responses.`,
+                responseText: chatTextResponse,
                 isSuccessful: true,
               },
             ],
@@ -68,6 +69,17 @@ export const useChat = () => {
         );
       } catch (error) {
         console.error("Error in chat processing: ", error);
+
+        if (loadingMessage!) {
+          setMessages((prev) =>
+            updateMessageById(prev, loadingMessage.id, {
+              type: "AI_RESPONSE",
+              content: {
+                text: "Sorry, there was an error processing your request.",
+              },
+            })
+          );
+        }
       } finally {
         setIsProcessing(false);
       }

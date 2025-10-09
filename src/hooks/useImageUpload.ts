@@ -7,7 +7,7 @@ export const useImageUpload = () => {
   const SUPPORTED_FILE_TYPES = [
     "image/jpeg",
     "image/jpg",
-    "imager/png",
+    "image/png",
     "image/webp",
     "image/gif",
   ];
@@ -43,7 +43,7 @@ export const useImageUpload = () => {
       setError(null);
 
       if (images.length + fileArray.length > MAX_IMAGES) {
-        setError("You can only upload to ${MAX_IMAGES} images.");
+        setError(`You can only upload to ${MAX_IMAGES} images.`);
         return;
       }
 

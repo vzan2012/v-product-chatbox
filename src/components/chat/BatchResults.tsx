@@ -1,5 +1,6 @@
 import React from "react";
 import { type BatchAnalysisResult } from "../../types/app";
+import { MarkdownRenderer } from "../ui/MarkdownRenderer";
 
 interface BatchResultsProps {
   analysisResult: BatchAnalysisResult;
@@ -65,7 +66,7 @@ export const BatchResults: React.FC<BatchResultsProps> = ({
                 </div>
 
                 <div className="text-gray-700 text-sm leading-relaxed">
-                  {result.responseText}
+                  <MarkdownRenderer content={result.responseText} />
                 </div>
               </div>
             </div>
@@ -76,9 +77,15 @@ export const BatchResults: React.FC<BatchResultsProps> = ({
       {/* Summary */}
       <div className="bg-gray-50 px-4 py-3 border-t border-gray-200">
         <div className="text-sm text-gray-600">
-          Analyzed {results.length} image{results.length > 1 ? "s" : ""} •
-          {results.filter((r) => r.isSuccessful).length} successful •
-          {results.filter((r) => !r.isSuccessful).length} failed
+          {results.some((result) => result.imageId === "text-only") ? (
+            <>Analysed Text</>
+          ) : (
+            <>
+              Analyzed {results.length} image{results.length > 1 ? "s" : ""} •
+              {results.filter((r) => r.isSuccessful).length} successful •
+              {results.filter((r) => !r.isSuccessful).length} failed
+            </>
+          )}
         </div>
       </div>
     </div>

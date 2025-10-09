@@ -9,7 +9,7 @@ interface MessageListProps {
 
 export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-6">
+    <div className="h-full overflow-y-auto p-4 space-y-6">
       {messages.map((message) => (
         <div key={message.id} className="flex flex-col">
           {message.type === "USER_QUERY" ? (

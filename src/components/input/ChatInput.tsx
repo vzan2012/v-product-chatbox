@@ -45,7 +45,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   const canSend = text.trim().length > 0 || images?.length > 0;
 
   return (
-    <div className="chat-input-container border-t p-4 bg-white">
+    <div className="chat-input-container border-t border-gray-200 p-4 bg-white">
       {images.length > 0 && (
         <div className="image-preview-container flex gap-2 mb-3 overflow-x-auto">
           {images.map((image) => (
@@ -66,7 +66,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         </div>
       )}
 
-      <div className="flex items-end gap-2">
+      <div className="flex items-start gap-2">
         <ImageUploadButton
           onFilesSelected={handleFilesSelected}
           disabled={!canAddMoreImages || isProcessing}
