@@ -24,9 +24,7 @@ export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
         <div className="flex items-center justify-center h-full text-gray-500">
           <div className="text-center">
             <div className="text-2xl mb-2">👋</div>
-            <p className="text-lg font-medium">
-              Welcome to BatchQuery Chatbot!
-            </p>
+            <p className="text-lg font-medium">Welcome to V-Product Chatbot!</p>
             <p className="text-sm">
               Upload images and ask questions to get started.
             </p>
