@@ -5,7 +5,7 @@ import { HumanMessage } from "@langchain/core/messages";
 const callGeminiModel = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
   return new ChatGoogleGenerativeAI({
-    model: "gemini-2.0-flash",
+    model: "gemini-3.5-flash",
     maxOutputTokens: 2048,
     apiKey,
   });
@@ -13,7 +13,7 @@ const callGeminiModel = () => {
 
 const createImageAnalysisPrompt = (
   query: string,
-  imageCount: number
+  imageCount: number,
 ): string => {
   return `
 You are a AI, a specialized assistant for analyzing product images.
@@ -72,7 +72,7 @@ const parseGeminiResponse = (geminiText: string, images: ImageFileState[]) => {
 
 export const analyzeBatchImages = async (
   images: ImageFileState[],
-  query: string
+  query: string,
 ) => {
   try {
     const chatModel = callGeminiModel();
