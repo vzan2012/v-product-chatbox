@@ -7,7 +7,7 @@ A sophisticated AI-powered chatbot interface designed for batch analysis of prod
 ### Core Functionality
 
 - **📸 Batch Image Upload** - Upload up to 4 product images simultaneously
-- **🤖 AI-Powered Analysis** - Integrated with Google Gemini 2.0 Flash for intelligent image analysis
+- **🤖 AI-Powered Analysis** - Integrated with Google Gemini 3.5 Flash for intelligent image analysis
 - **💬 Natural Chat Interface** - Clean, ChatGPT-style conversation flow
 - **🎯 Product-Focused Insights** - Specialized in product quality, defects, and visual analysis
 
@@ -24,7 +24,7 @@ A sophisticated AI-powered chatbot interface designed for batch analysis of prod
 | -------------------- | ------------------------------------- |
 | **Frontend**         | React 19, TypeScript, Vite            |
 | **Styling**          | Tailwind CSS                          |
-| **AI Integration**   | LangChain.js, Google Gemini 2.0 Flash |
+| **AI Integration**   | LangChain.js, Google Gemini 3.5 Flash |
 | **State Management** | React Hooks                           |
 | **Build Tool**       | Vite                                  |
 | **Package Manager**  | Bun                                   |
@@ -131,7 +131,7 @@ src/
 
 ## 🔌 API Integration
 
-### Google Gemini 2.0 Flash
+### Google Gemini 3.5 Flash
 
 ```typescript
 // Multimodal analysis example
@@ -172,7 +172,7 @@ User Question: "${query}"
 ### Styling Modifications
 
 - Update Tailwind classes in component files
-- Modify color scheme in `tailwind.config.js`
+- Modify theme tokens in `src/index.css` (Tailwind v4 config-in-CSS)
 - Extend UI components in `src/components/ui/`
 
 ## 📋 Available Scripts
@@ -196,7 +196,7 @@ We welcome contributions! Please:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🙋‍♂️ Author
 
