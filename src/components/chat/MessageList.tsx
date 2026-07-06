@@ -1,5 +1,5 @@
 import React from "react";
-import { type Message } from "../../types/app";
+import type { Message } from "../../types/app";
 import { UserMessage } from "./UserMessage";
 import { AssistantMessage } from "./AssistantMessage";
 

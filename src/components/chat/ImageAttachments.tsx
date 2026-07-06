@@ -1,5 +1,5 @@
 import React from "react";
-import { type ImageFileState } from "../../types/app";
+import type { ImageFileState } from "../../types/app";
 
 interface ImageAttachmentsProps {
   images: ImageFileState[];

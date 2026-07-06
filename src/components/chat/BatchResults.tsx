@@ -1,5 +1,5 @@
 import React from "react";
-import { type BatchAnalysisResult } from "../../types/app";
+import type { BatchAnalysisResult } from "../../types/app";
 import { MarkdownRenderer } from "../ui/MarkdownRenderer";
 
 interface BatchResultsProps {

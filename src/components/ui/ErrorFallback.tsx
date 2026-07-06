@@ -1,5 +1,5 @@
 interface ErrorFallbackProps {
-  error: Error;
+  error: unknown;
   resetErrorBoundary: () => void;
 }
 
@@ -7,6 +7,8 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   error,
   resetErrorBoundary,
 }) => {
+  const message = error instanceof Error ? error.message : String(error);
+
   return (
     <div className="flex items-center justify-center h-screen bg-red-50">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md text-center">
@@ -22,7 +24,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
             Error details
           </summary>
           <pre className="mt-2 text-xs text-red-600 bg-red-50 p-2 rounded overflow-auto">
-            {error.message}
+            {message}
           </pre>
         </details>
         <button
