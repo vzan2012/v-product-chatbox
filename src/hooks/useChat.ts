@@ -4,7 +4,7 @@ import type {
   ImageFileState,
   Message,
 } from "../types/app";
-import { analyzeBatchImages, chatWithGemini } from "../lib/api/gemini";
+import { analyzeBatchImages, chatWithGroq } from "../lib/api/groq";
 import {
   createAIResponseMessage,
   createLoadingMessage,
@@ -26,7 +26,7 @@ export const useChat = () => {
       setMessages((prev) => [...prev, newMessage]);
       return newMessage;
     },
-    []
+    [],
   );
 
   const sendMessage = useCallback(
@@ -45,7 +45,7 @@ export const useChat = () => {
         if (images.length > 0) {
           analysisResult = await analyzeBatchImages(images, text.trim());
         } else {
-          const chatTextResponse = await chatWithGemini(text.trim());
+          const chatTextResponse = await chatWithGroq(text.trim());
           analysisResult = {
             query: text.trim(),
             results: [
@@ -64,8 +64,8 @@ export const useChat = () => {
           updateMessageById(
             prev,
             loadingMessage.id,
-            createAIResponseMessage(analysisResult)
-          )
+            createAIResponseMessage(analysisResult),
+          ),
         );
       } catch (error) {
         console.error("Error in chat processing: ", error);
@@ -77,26 +77,26 @@ export const useChat = () => {
               content: {
                 text: "Sorry, there was an error processing your request.",
               },
-            })
+            }),
           );
         }
       } finally {
         setIsProcessing(false);
       }
     },
-    [addMessage]
+    [addMessage],
   );
 
   const clearChat = useCallback(() => setMessages([]), [messages]);
 
   const getUserMessages = useCallback(
     () => messages.filter((msg) => msg.type === "USER_QUERY"),
-    [messages]
+    [messages],
   );
 
   const getAIMessages = useCallback(
     () => messages.filter((msg) => msg.type === "AI_RESPONSE"),
-    [messages]
+    [messages],
   );
 
   return {

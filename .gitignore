@@ -26,3 +26,6 @@ dist-ssr
 
 # Custom Files
 .env
+
+# Local Agents
+AGENTS.local.md
